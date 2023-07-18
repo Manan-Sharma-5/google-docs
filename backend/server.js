@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const authenticationRoute = require('./routes/AuthenticationRoute')
+const documentsRoute = require('./routes/DocumentsRoute')
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose')
 
@@ -13,5 +14,6 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.use('/', authenticationRoute)
+app.use('/docs', documentsRoute)
 
 module.exports = app

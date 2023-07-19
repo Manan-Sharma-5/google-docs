@@ -1,23 +1,24 @@
 const jwt = require('jsonwebtoken');
 
 const Authenticator = (req, res, next) => {
-    const token = req.cookies.token;
-    try {
+    const token = req.header('Authorization');
 
+    try {
         if (!token) {
-            res.status(401).json({
+            return res.status(401).json({
                 status: 'No Token Sent'
             });
-            const check = jwt.verify(token, process.env.JWT_SECRET);
-            if (!check) {
-                res.status(401).json({
-                    status: 'Invalid Token'
-                });
-            }
-            next();
         }
-    }
-    catch (error) {
+
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+        if (!decodedToken) {
+            return res.status(401).json({
+                status: 'Invalid Token'
+            });
+        }
+
+        next();
+    } catch (error) {
         res.status(401).json({
             status: 'Invalid Token'
         });

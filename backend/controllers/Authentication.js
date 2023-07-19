@@ -40,7 +40,7 @@ const login = async (req, res) => {
         const user = await User.findOne({email: email});
 
         if(user && await bcrypt.compare(password, user.password)) {
-            const token = jwt.sign({email: email}, process.env.JWT_SECRET, {expiresIn: '1h'});
+            const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn: '1h'});
             user.token = token;
             user.password = undefined;
             return res.status(200).cookie('token', token, {httpOnly: true}).json(user);

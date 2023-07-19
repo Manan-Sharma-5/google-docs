@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const authenticationRoute = require('./routes/AuthenticationRoute')
-const documentsRoute = require('./routes/DocumentsRoute')
+const documentsRoute = require('./routes/DocsRoute')
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose')
 

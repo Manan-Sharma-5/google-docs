@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Authenticator = require('../middlewares/Authenticator');
+const Authenticator = require('../middleware/Authenticator');
 
 const {create, read, update, remove} = require('../controllers/DocsControl');
 

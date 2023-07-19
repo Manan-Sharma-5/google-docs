@@ -1,4 +1,5 @@
 const Docs = require('../models/Docs');
+const jwt = require('jsonwebtoken');
 
 const create = async (req, res) => {
     try {
@@ -8,8 +9,8 @@ const create = async (req, res) => {
             res.status(400).json({message: 'Title is required'});
         }
 
-        const token = req.headers.authorization.split(' ')[1]
-        const email = jwt.decode(token).email;
+        const token = req.headers.authorization
+        const email = jwt.decode(token).id;
 
         const newDoc = new Docs({title, content, user: email});
 
@@ -22,3 +23,32 @@ const create = async (req, res) => {
     }
 }
 
+const read = async (req, res) => {
+    try {
+        const { id } = req.query;
+    }
+    
+    catch(err){
+        console.log(err);
+    }
+}
+
+const update = async (req, res) => {
+    try {
+    }
+    catch(err){
+    }
+}
+
+const remove = async (req, res) => {
+    try {
+    }
+    catch(err){
+    }
+}
+
+
+exports.create = create;
+exports.read = read;
+exports.update = update;
+exports.remove = remove;
